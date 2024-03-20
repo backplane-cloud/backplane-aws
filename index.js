@@ -9,19 +9,19 @@ const createAWSEnvironments = asyncHandler(async (req, res) => {
 
 const getAWSAccess = asyncHandler(async (req, res) => {
   console.log("Get AWS Access");
-  res.send("getAWSAccess Not yet implmented");
+  res.send("getAWSAccess Not yet implemented");
   res.end;
 });
 
 const getAWSCost = asyncHandler(async (req, res) => {
   console.log("Get AWS Cost");
-  res.send("getAWSCost Not yet implmented");
+  res.send("getAWSCost Not yet implemented");
   res.end;
 });
 
 const getAWSPolicy = asyncHandler(async (req, res) => {
   console.log("Get AWS Policy");
-  res.send("getAWSCost Not yet implmented");
+  res.send("getAWSCost Not yet implemented");
   res.end;
 });
 
