@@ -1,0 +1,15 @@
+{
+  "name": "@backplane-software/backplane-aws",
+  "version": "1.0.0",
+  "description": "Backplane AWS Module",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lewis@backplane.cloud",
+  "license": "MIT",
+  "dependencies": {
+    "express-async-handler": "^1.2.0"
+  }
+}
