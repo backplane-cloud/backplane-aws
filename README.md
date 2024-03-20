@@ -2,9 +2,9 @@
 
 This is a library module for AWS which exports the functions:
 
-- getGCPCost
-- getGCPAccess
-- getGCPPolicy
+- getAWSCost
+- getAWSAccess
+- getAWSPolicy
 - createGCPEnvironments
 
 It is used by `@backplane-software/backplane-api` which hosts a RESTful API server that provides a Product Catalog for various Apps residing in different cloud platforms.
