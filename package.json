@@ -1,6 +1,6 @@
 {
   "name": "@backplane-software/backplane-aws",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Backplane AWS Module",
   "type": "module",
   "main": "index.js",
