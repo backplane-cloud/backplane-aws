@@ -10,9 +10,9 @@
   "author": "lewis@backplane.cloud",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.1586.0",
     "express-async-handler": "^1.2.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/backplane-cloud/backplane-aws.git"
