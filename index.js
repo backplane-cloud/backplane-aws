@@ -1,13 +1,6 @@
 import asyncHandler from "express-async-handler";
 import AWS from "aws-sdk";
 
-// // AWS CODE
-// const createAWSEnvironments = asyncHandler(async (req, res) => {
-//   console.log("Create AWS Environments");
-//   res.send("createAWSEnvironments Not yet implmented");
-//   res.end;
-// });
-
 async function createAWSAccount(
   accessKeyId,
   secretAccessKey,
