@@ -47,16 +47,6 @@ async function createAWSEnv({
   secretAccessKey,
   emailAddress,
 }) {
-  // let payload = {
-  //   environs,
-  //   orgCode,
-  //   appCode,
-  //   accessKeyId,
-  //   secretAccessKey,
-  //   emailAddress,
-  // }
-  // return payload
-
   try {
     let environments = [];
 
@@ -84,11 +74,51 @@ async function createAWSEnv({
   }
 }
 
-const getAWSAccess = asyncHandler(async (req, res) => {
-  console.log("Get AWS Access");
-  res.send("getAWSAccess Not yet implemented");
-  res.end;
-});
+async function getAWSAccess({ accessKeyId, secretAccessKey, environments }) {
+  // Create IAM service object
+  const iam = new AWS.IAM();
+  AWS.config.update({
+    accessKeyId,
+    secretAccessKey,
+    region: "eu-west-2",
+  });
+  let accessAssignments = [];
+
+  try {
+    await Promise.all(
+      environments.map(async (env) => {
+        // Get IAM user details
+        const { Users } = await iam.listUsers().promise();
+        // const users = Users; //Users.filter((user) => user.Arn.includes(env));
+
+        // Extract access details from the user(s)
+        // const accessDetails = users.map((user) => {
+        //   return {
+        //     UserName: user.UserName,
+        //     UserId: user.UserId,
+        //     AccessKeys: user.AccessKeys,
+        //   };
+        // });
+        accessAssignments.push({
+          environment: env,
+          assignments: Users,
+        });
+      })
+    );
+  } catch (error) {
+    console.error("Error retrieving AWS access for environment:", error);
+    // Push a placeholder object to maintain the structure of the results array
+    accessAssignments.push({ environment: env, assignments: console.error });
+  }
+
+  return accessAssignments;
+}
+
+// const getAWSAccess = asyncHandler(async (req, res) => {
+//   console.log("Get AWS Access");
+//   res.send("getAWSAccess Not yet implemented");
+//   res.end;
+// });
 
 const getAWSCost = asyncHandler(async (req, res) => {
   console.log("Get AWS Cost");
