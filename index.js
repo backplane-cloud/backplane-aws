@@ -114,22 +114,31 @@ async function getAWSAccess({ accessKeyId, secretAccessKey, environments }) {
   return accessAssignments;
 }
 
-// const getAWSAccess = asyncHandler(async (req, res) => {
-//   console.log("Get AWS Access");
-//   res.send("getAWSAccess Not yet implemented");
-//   res.end;
-// });
+async function getAWSPolicies({ accessKeyId, secretAccessKey, environments }) {
+  // Set the AWS region
+  AWS.config.update({ region: "us-east-1" }); // Need to parameterise this on environments
 
-const getAWSCost = asyncHandler(async (req, res) => {
-  console.log("Get AWS Cost");
-  res.send("getAWSCost Not yet implemented");
-  res.end;
-});
+  // Create an Organizations service object
+  const organizations = new AWS.Organizations();
 
-const getAWSPolicy = asyncHandler(async (req, res) => {
-  console.log("Get AWS Policy");
-  res.send("getAWSCost Not yet implemented");
-  res.end;
-});
+  try {
+    // Get SCPs for the organization
+    const response = await organizations
+      .listPolicies({ Filter: "SERVICE_CONTROL_POLICY" })
+      .promise();
 
-export { getAWSAccess, getAWSCost, getAWSPolicy, createAWSEnv };
+    // Extract SCPs from the response
+    const scps = response.Policies;
+
+    return scps;
+  } catch (error) {
+    console.error("Error retrieving AWS Service Control Policies:", error);
+    return null;
+  }
+}
+
+async function getAWSCost({ accessKeyId, secretAccessKey, environments }) {
+  return "Not yet implemented";
+}
+
+export { getAWSAccess, getAWSCost, getAWSPolicies, createAWSEnv };
