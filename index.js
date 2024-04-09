@@ -137,8 +137,9 @@ async function getAWSPolicies({ accessKeyId, secretAccessKey, environments }) {
   }
 }
 
-async function getAWSCost({ accessKeyId, secretAccessKey, environments }) {
-  return "Not yet implemented";
+async function getAWSCost({ cloudCredentials, environments }) {
+  const cost = ((Math.random() + 1) * 500).toFixed(2);
+  return cost; // Simulating App Cost for MVP
 }
 
 export { getAWSAccess, getAWSCost, getAWSPolicies, createAWSEnv };
